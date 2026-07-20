@@ -1,0 +1,21 @@
+# Next.js
+faithfulens/node_modules/
+faithfulens/.next/
+
+# Python
+rag-service/venv/
+rag-service/__pycache__/
+rag-service/**/*.pyc
+
+# Environment files
+.env
+.env.local
+faithfulens/.env.local
+rag-service/.env
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
