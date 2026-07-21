@@ -1,17 +1,20 @@
+from fastapi import FastAPI
+from pydantic import BaseModel
 from generator import generate_analysis
-from chroma_db import store_chunks, retrieve_chunks
+from chroma_db import (store_chunks, retrieve_chunks, embeddings_exist,
+)
 from chunk import chunk_comments
 from comments import get_comments
 from youtube import search_videos
-from pydantic import BaseModel
-from fastapi import FastAPI
-import os
-import json
-from pathlib import Path
 
-CACHE_DIR = Path("cache")
-CACHE_DIR.mkdir(exist_ok=True)
-
+from helpers import (
+    comments_exist,
+    load_comments,
+    save_comments,
+    analysis_exist,
+    load_analysis,
+    save_analysis,
+)
 
 app = FastAPI()
 
@@ -20,74 +23,57 @@ class MovieRequest(BaseModel):
     movie: str
 
 
-@app.get("/")
-def home():
-    return {
-        "message": "Faithfulens RAG API is running 🚀"
-    }
-
-
 @app.post("/analyze")
 def analyze(request: MovieRequest):
 
-    filename = request.movie.lower().replace(" ", "-") + ".json"
-    cache_file = CACHE_DIR / filename
+    movie = request.movie
 
-    if cache_file.exists():
-        with open(cache_file, "r", encoding="utf-8") as f:
-            return json.load(f)
+    if analysis_exist(movie):
+        print("Loading cached analysis...")
+        return load_analysis(movie)
 
-    print(f"Generating analysis for: {request.movie}")
+    if comments_exist(movie):
 
-    videos = search_videos(request.movie)
+        print("Loading cached comments...")
+        all_comments = load_comments(movie)
 
-    all_comments = []
+    else:
 
-    for video in videos:
-        comments = get_comments(video["videoId"])
-        all_comments.extend(comments)
+        print("Downloading YouTube comments...")
 
-    chunks = chunk_comments(all_comments)
+        videos = search_videos(movie)
 
-    store_chunks(request.movie, chunks)
+        all_comments = []
 
-    story = retrieve_chunks(
-        request.movie,
-        "story changes compared to the source material"
-    )
+        for video in videos:
+            comments = get_comments(video["videoId"])
+            all_comments.extend(comments)
 
-    characters = retrieve_chunks(
-        request.movie,
-        "character differences"
-    )
+        save_comments(movie, all_comments)
 
-    missing = retrieve_chunks(
-        request.movie,
-        "missing scenes"
-    )
+    if not embeddings_exist(movie):
 
-    added = retrieve_chunks(
-        request.movie,
-        "added scenes"
-    )
+        print("Creating embeddings...")
 
-    likes = retrieve_chunks(
-        request.movie,
-        "what fans liked"
-    )
+        chunks = chunk_comments(all_comments)
 
-    dislikes = retrieve_chunks(
-        request.movie,
-        "what fans disliked"
-    )
+        store_chunks(movie, chunks)
 
-    faithfulness = retrieve_chunks(
-        request.movie,
-        "overall faithfulness"
-    )
+    else:
+
+        print("Using cached embeddings.")
+
+    chunks = []
+
+    story = retrieve_chunks(movie, "story differences")
+    characters = retrieve_chunks(movie, "character differences")
+    missing = retrieve_chunks(movie, "missing scenes")
+    added = retrieve_chunks(movie, "added scenes")
+    likes = retrieve_chunks(movie, "what viewers liked")
+    dislikes = retrieve_chunks(movie, "what viewers disliked")
+    faithfulness = retrieve_chunks(movie, "overall faithfulness")
 
     context = f"""
-
 {story}
 
 {characters}
@@ -103,20 +89,15 @@ def analyze(request: MovieRequest):
 {faithfulness}
 """
 
-    analysis = generate_analysis(
-        request.movie,
-        context
-    )
+    analysis = generate_analysis(movie, context)
 
     result = {
-        "movie": request.movie,
-        "total_videos": len(videos),
+        "movie": movie,
         "total_comments": len(all_comments),
         "stored_chunks": len(chunks),
-        "analysis": analysis
+        "analysis": analysis,
     }
 
-    with open(cache_file, "w", encoding="utf-8") as f:
-        json.dump(result, f, indent=4, ensure_ascii=False)
+    save_analysis(movie, result)
 
     return result

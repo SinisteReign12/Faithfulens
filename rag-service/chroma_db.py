@@ -10,14 +10,35 @@ collection = client.get_or_create_collection(
 
 
 def store_chunks(movie_name, chunks):
-    collection.delete(where={"movie": movie_name})
+
+    existing = collection.get(where={"movie": movie_name})
+
+    if existing["ids"]:
+        print("Using cached embeddings.")
+        return
+
+    print("Creating embeddings...")
+
+    ids = []
+    documents = []
+    metadatas = []
 
     for i, chunk in enumerate(chunks):
-        collection.add(
-            ids=[f"{movie_name}-{i}"],
-            documents=[chunk],
-            metadatas=[{"movie": movie_name}]
-        )
+        ids.append(f"{movie_name}-{i}")
+        documents.append(chunk)
+        metadatas.append({"movie": movie_name})
+
+    collection.add(
+        ids=ids,
+        documents=documents,
+        metadatas=metadatas,
+    )
+    
+def embeddings_exist(movie_name):
+
+    existing = collection.get(where={"movie": movie_name})
+
+    return len(existing["ids"]) > 0    
 
 
 def retrieve_chunks(movie_name, query, n_results=4):
