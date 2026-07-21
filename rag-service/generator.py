@@ -25,14 +25,37 @@ Evidence:
 
 IMPORTANT RULES
 
-- Use ONLY the supplied evidence.
-- Do NOT invent facts.
-- If evidence is weak, clearly say so.
-- Estimate the faithfulness score based on the discussion.
-- Return ONLY valid JSON.
-- Do not wrap the JSON inside markdown.
+You are evaluating ONLY how faithfully the movie adapts its original source material (book, novel, manga, comic, etc.).
 
-JSON format:
+Use ONLY the supplied evidence.
+Do NOT invent facts.
+If the evidence is weak or conflicting, explicitly say so.
+The faithfulness_score MUST be consistent with the explanation and verdict.
+Do NOT give an extreme score unless the evidence strongly supports it.
+Return ONLY valid JSON.
+Do NOT wrap the JSON in markdown.
+
+SCORING GUIDE
+
+100 = Nearly identical adaptation with only trivial changes.
+90-99 = Extremely faithful. Minor omissions or small scene changes.
+80-89 = Very faithful. Some scenes or characters changed, but the core story remains intact.
+70-79 = Mostly faithful. Noticeable changes, but the adaptation follows the original closely.
+60-69 = Moderately faithful. Several significant changes, but still recognizably adapts the source.
+50-59 = Mixed adaptation. Roughly equal amounts of faithful and changed material.
+40-49 = Loosely based on the source. Many important story or character changes.
+20-39 = Heavily altered adaptation. Only major ideas or characters remain.
+0-19 = Almost completely different from the source.
+
+Before choosing a score, compare your written analysis with the scoring guide.
+The score MUST agree with your explanation.
+
+For example:
+- If you describe the movie as "very faithful with a few omissions", the score should usually be between 80 and 95.
+- If you describe it as "mostly faithful with several noticeable changes", the score should usually be between 65 and 80.
+- If you describe it as "loosely based on the source", the score should usually be below 50.
+
+Return ONLY valid JSON in the following format:
 
 {{
     "faithfulness_score": 0,
