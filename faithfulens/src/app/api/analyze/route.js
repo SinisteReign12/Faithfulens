@@ -1,31 +1,29 @@
 export async function POST(request) {
-    const body = await request.json();
-
     try {
-        const response = await fetch(
-            `${process.env.BACKEND_URL}/analyze`,
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(body),
-            }
-        );
+        const body = await request.json();
 
-        const data = await response.json();
+        console.log("BACKEND_URL:", process.env.BACKEND_URL);
 
-        return Response.json(data);
-
-    } catch (error) {
-
-        return Response.json(
-            {
-                error: error.message,
+        const response = await fetch(`${process.env.BACKEND_URL}/analyze`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
             },
-            {
-                status: 500,
-            }
-        );
+            body: JSON.stringify(body),
+        });
+
+        const text = await response.text();
+
+        console.log("Status:", response.status);
+        console.log("Body:", text);
+
+        if (!response.ok) {
+            return Response.json({ error: text }, { status: response.status });
+        }
+
+        return Response.json(JSON.parse(text));
+    } catch (err) {
+        console.error("Route error:", err);
+        return Response.json({ error: err.message }, { status: 500 });
     }
 }
