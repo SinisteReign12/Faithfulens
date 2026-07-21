@@ -9,10 +9,10 @@ export async function analyzeMovie(title) {
   });
 
   const data = await res.json();
-  
+
   if (!res.ok) {
-    throw new Error(`API returned ${res.status}: ${text}`);
+    throw new Error(`API returned ${res.status}: ${JSON.stringify(data)}`);
   }
 
-  return JSON.parse(text);
+  return data;
 }
