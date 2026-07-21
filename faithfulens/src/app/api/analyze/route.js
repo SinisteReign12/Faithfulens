@@ -11,12 +11,7 @@ export async function POST(request) {
             },
             body: JSON.stringify(body),
         });
-
-        const text = await response.text();
-
-        console.log("Status:", response.status);
-        console.log("Body:", text);
-
+        
         if (!response.ok) {
             return Response.json({ error: text }, { status: response.status });
         }
