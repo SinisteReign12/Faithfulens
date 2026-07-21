@@ -7,7 +7,7 @@ load_dotenv()
 
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-MODEL = "poolside/laguna-m.1:free"
+MODEL = "nvidia/nemotron-3-ultra-550b-a55b:free"
 
 
 def generate_analysis(movie_name, context):
