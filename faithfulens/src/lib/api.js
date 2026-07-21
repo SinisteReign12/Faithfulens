@@ -11,7 +11,7 @@ export async function analyzeMovie(title) {
   const data = await res.json();
 
   if (!res.ok) {
-    throw new Error(`API returned ${res.status}: ${JSON.stringify(data)}`);
+    throw new Error(data.error || `API returned ${res.status}`);
   }
 
   return data;
