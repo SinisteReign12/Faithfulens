@@ -8,11 +8,11 @@ export async function analyzeMovie(title) {
     cache: "no-store",
   });
 
-  const data = await res.json();
+  const text = await res.text();
 
   if (!res.ok) {
-    throw new Error(data.error || `API returned ${res.status}`);
+    throw new Error(`API returned ${res.status}: ${text}`);
   }
 
-  return data;
+  return JSON.parse(text);
 }
