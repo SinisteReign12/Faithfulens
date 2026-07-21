@@ -72,6 +72,10 @@ JSON format:
         response.raise_for_status()
 
     result = response.json()
+    if "choices" not in result:
+        print("OpenRouter returned:")
+        print(json.dumps(result, indent=2))
+        raise Exception(f"OpenRouter error: {result}")
 
     content = result["choices"][0]["message"]["content"].strip()
 
