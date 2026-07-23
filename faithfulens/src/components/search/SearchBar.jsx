@@ -37,7 +37,7 @@ export default function SearchBar() {
     return (
         <div className="w-full max-w-3xl">
 
-            <div className="flex ml-auto mr-auto bg-white/30 backdrop-blur-md rounded-xl border border-zinc-700 overflow-hidden">
+            <div className="flex ml-auto mr-auto bg-zinc/30 backdrop-blur-md rounded-xl border border-zinc-800 overflow-hidden">
 
                 <input
                     type="text"
