@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import SearchSkeleton from "./SearchSkeleton";
+import Image from "next/image";
 
 export default function SearchBar() {
     const [query, setQuery] = useState("");
@@ -72,13 +73,16 @@ export default function SearchBar() {
                             href={`/movie/${movie.id}`}
                             className="bg-zinc-900 rounded-xl overflow-hidden hover:scale-105 transition block"
                         >
-                            <img
+                            <Image
                                 src={
                                     movie.poster_path
                                         ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
                                         : "/placeholder.png"
                                 }
                                 alt={movie.title}
+                                width={500}
+                                height={750}
+                                sizes="(max-width: 768px) 50vw, 25vw"
                                 className="w-full h-70 object-cover"
                             />
                         </Link>

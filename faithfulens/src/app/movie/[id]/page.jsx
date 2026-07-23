@@ -11,14 +11,16 @@ export default async function MoviePage({ params }) {
     return (
         <main className="min-h-screen pb-20 bg-zinc-950 text-white">
 
-            <div
-                className="relative h-105 w-full bg-cover bg-center"
-                style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
-                }}
-            >
+            <div className="relative h-105 w-full overflow-hidden rounded-xl">
+                <Image
+                    src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+                    alt={movie.title}
+                    fill
+                    priority
+                    className="object-cover"
+                />
 
-                <div className="absolute inset-0 w-full bg-linear-to-t from-zinc-950 via-zinc-950/60 to-black/30" />
+                <div className="absolute inset-0 bg-black/50" />
 
             </div>
 
