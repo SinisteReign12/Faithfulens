@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
+import SearchSkeleton from "./SearchSkeleton";
 
 export default function SearchBar() {
     const [query, setQuery] = useState("");
@@ -59,41 +60,33 @@ export default function SearchBar() {
 
             </div>
 
-            {loading && (
-                <p className="mt-6 text-gray-400">
-                    Searching...
-                </p>
-            )}
-
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
 
-                {movies.map((movie) => (
-
-                    <Link
-                        key={movie.id}
-                        href={`/movie/${movie.id}`}
-                        className="bg-zinc-900 rounded-xl overflow-hidden hover:scale-105 transition block"
-                    >
-
-                        <img
-                            src={
-                                movie.poster_path
-                                    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                                    : "/placeholder.png"
-                            }
-                            alt={movie.title}
-                            className="w-full h-70 object-cover"
-                        />
-
-                    </Link>
-
-                ))}
+                {loading
+                    ? Array.from({ length: 8 }).map((_, index) => (
+                        <SearchSkeleton key={index} />
+                    ))
+                    : movies.map((movie) => (
+                        <Link
+                            key={movie.id}
+                            href={`/movie/${movie.id}`}
+                            className="bg-zinc-900 rounded-xl overflow-hidden hover:scale-105 transition block"
+                        >
+                            <img
+                                src={
+                                    movie.poster_path
+                                        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                                        : "/placeholder.png"
+                                }
+                                alt={movie.title}
+                                className="w-full h-70 object-cover"
+                            />
+                        </Link>
+                    ))}
 
                 {!loading && movies.length === 0 && (
                     <div className="col-span-full text-center py-20 text-zinc-500">
-
                         Search for a movie to begin your faithfulness analysis.
-
                     </div>
                 )}
 
