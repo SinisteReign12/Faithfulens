@@ -11,17 +11,17 @@ export default async function MoviePage({ params }) {
     return (
         <main className="min-h-screen pb-20 bg-zinc-950 text-white">
 
-            <div className="relative h-105 w-full overflow-hidden rounded-xl">
+            <div className="relative h-[60vh] min-h-112.5 w-full overflow-hidden">
                 <Image
                     src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
                     alt={movie.title}
                     fill
                     priority
-                    className="object-cover"
+                    className="object-cover scale-105"
                 />
 
-                <div className="absolute inset-0 bg-black/50" />
-
+                <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-black/40 to-black/10" />
+                <div className="absolute inset-0 bg-linear-to-r from-black/30 via-transparent to-black/30" />
             </div>
 
             <div className="max-w-6xl mx-auto px-8 -mt-48 relative z-10">
