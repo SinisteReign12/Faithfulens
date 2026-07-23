@@ -1,5 +1,4 @@
 import Link from "next/link";
-import FaithfulnessMeter from "@/components/analysis/FaithfulnessMeter";
 import SectionCard from "@/components/analysis/SectionCard";
 import SectionList from "@/components/analysis/SectionList";
 import VerdictCard from "@/components/analysis/VerdictCard";
