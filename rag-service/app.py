@@ -65,29 +65,20 @@ def analyze(request: MovieRequest):
 
     chunks = []
 
-    story = retrieve_chunks(movie, "story differences")
-    characters = retrieve_chunks(movie, "character differences")
-    missing = retrieve_chunks(movie, "missing scenes")
-    added = retrieve_chunks(movie, "added scenes")
-    likes = retrieve_chunks(movie, "what viewers liked")
-    dislikes = retrieve_chunks(movie, "what viewers disliked")
-    faithfulness = retrieve_chunks(movie, "overall faithfulness")
+    query = """
+    Movie adaptation.
 
-    context = f"""
-{story}
+    Find discussions about:
+    - Story changes
+    - Character changes
+    - Missing scenes
+    - Added scenes
+    - Overall faithfulness
+    - Things viewers liked
+    - Things viewers disliked
+    """
 
-{characters}
-
-{missing}
-
-{added}
-
-{likes}
-
-{dislikes}
-
-{faithfulness}
-"""
+    context = retrieve_chunks(movie, query, n_results=8)
 
     analysis = generate_analysis(movie, context)
 
