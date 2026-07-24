@@ -8,9 +8,11 @@ collection = client.get_or_create_collection(
     embedding_function=embedding_function
 )
 
+DEFAULT_RESULTS = 4
+
 
 def store_chunks(movie_name, chunks):
-
+    
     existing = collection.get(where={"movie": movie_name})
 
     if existing["ids"]:
@@ -33,23 +35,28 @@ def store_chunks(movie_name, chunks):
         documents=documents,
         metadatas=metadatas,
     )
-    
+
+
 def embeddings_exist(movie_name):
-
+    
     existing = collection.get(where={"movie": movie_name})
+    return len(existing["ids"]) > 0
 
-    return len(existing["ids"]) > 0    
 
-
-def retrieve_chunks(movie_name, query, n_results=4):
-
+def retrieve_chunks(movie_name, query, n_results=DEFAULT_RESULTS):
     results = collection.query(
         query_texts=[query],
         n_results=n_results,
         where={"movie": movie_name},
     )
 
-    if not results["documents"]:
+    documents = results.get("documents", [])
+
+    if not documents or not documents[0]:
         return ""
 
-    return "\n\n".join(results["documents"][0])
+    unique_documents = list(dict.fromkeys(documents[0]))
+
+    print(f"Retrieved {len(unique_documents)} chunks.")
+
+    return "\n\n".join(unique_documents)
