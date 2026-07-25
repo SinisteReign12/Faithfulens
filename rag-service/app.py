@@ -1,12 +1,10 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from generator import generate_analysis
-from chroma_db import (store_chunks, retrieve_chunks, embeddings_exist,
-)
+from chroma_db import (store_chunks, retrieve_chunks, embeddings_exist)
 from chunk import chunk_comments
 from comments import get_comments
 from youtube import search_videos
-
 from helpers import (
     comments_exist,
     load_comments,
@@ -18,10 +16,8 @@ from helpers import (
 
 app = FastAPI()
 
-
 class MovieRequest(BaseModel):
     movie: str
-
 
 @app.post("/analyze")
 def analyze(request: MovieRequest):

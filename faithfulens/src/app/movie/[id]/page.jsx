@@ -11,6 +11,8 @@ export default async function MoviePage({ params }) {
     return (
         <main className="min-h-screen pb-20 bg-zinc-950 text-white">
 
+            <Navbar />
+
             <div className="relative h-[60vh] min-h-112.5 w-full overflow-hidden">
                 <Image
                     src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}

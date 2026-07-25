@@ -10,7 +10,6 @@ collection = client.get_or_create_collection(
 
 DEFAULT_RESULTS = 4
 
-
 def store_chunks(movie_name, chunks):
     
     existing = collection.get(where={"movie": movie_name})
@@ -36,12 +35,10 @@ def store_chunks(movie_name, chunks):
         metadatas=metadatas,
     )
 
-
 def embeddings_exist(movie_name):
     
     existing = collection.get(where={"movie": movie_name})
     return len(existing["ids"]) > 0
-
 
 def retrieve_chunks(movie_name, query, n_results=DEFAULT_RESULTS):
     results = collection.query(

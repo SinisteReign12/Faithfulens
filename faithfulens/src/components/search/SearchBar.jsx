@@ -39,7 +39,7 @@ export default function SearchBar() {
     return (
         <div className="w-full max-w-3xl">
 
-            <div className="flex ml-auto mr-auto bg-zinc/30 backdrop-blur-md rounded-xl border border-zinc-800 overflow-hidden">
+            <div className="flex ml-auto mr-auto bg-zinc/30 backdrop-blur-md rounded-xl border border-zinc-900 overflow-hidden">
 
                 <input
                     type="text"
@@ -54,7 +54,7 @@ export default function SearchBar() {
 
                 <button
                     onClick={handleSearch}
-                    className="bg-zinc-700 hover:cursor-pointer hover:bg-zinc-800 px-6 flex items-center justify-center"
+                    className="bg-zinc-900/80 hover:cursor-pointer hover:bg-zinc-800 px-6 flex items-center justify-center"
                 >
                     <Search />
                 </button>

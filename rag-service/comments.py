@@ -6,7 +6,6 @@ load_dotenv()
 
 API_KEY = os.getenv("YOUTUBE_API_KEY")
 
-
 def get_comments(video_id: str, max_comments=5):
     url = "https://www.googleapis.com/youtube/v3/commentThreads"
 

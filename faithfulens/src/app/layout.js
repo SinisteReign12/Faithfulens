@@ -13,8 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://your-domain.vercel.app"),
-
+  
   title: "Faithfulens",
   description:
     "Discover how faithfully movies adapt their source material using AI and community insights.",
@@ -36,7 +35,7 @@ export default function RootLayout({ children }) {
     >
       <body>
 
-        <Navbar />
+        {/* <Navbar /> */}
 
         {children}
 

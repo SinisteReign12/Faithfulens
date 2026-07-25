@@ -17,6 +17,8 @@ export default async function AnalysisPage({ params }) {
     return (
         <main className="min-h-screen mt-5 px-8 bg-zinc-950 text-white">
 
+            <Navbar />
+
             <Link
                 href={`/movie/${id}`}
                 className="text-zinc-500 hover:text-zinc-100"

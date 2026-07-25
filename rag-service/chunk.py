@@ -7,7 +7,6 @@ def clean_text(text: str):
 
     return text.strip()
 
-
 def chunk_comments(comments, chunk_size=500):
     text = "\n".join(comments)
 
