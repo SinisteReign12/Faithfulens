@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getMovie } from "@/lib/tmdb";
+import Navbar from "@/components/layout/Navbar";
 
 export default async function MoviePage({ params }) {
 

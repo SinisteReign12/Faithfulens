@@ -5,6 +5,7 @@ import VerdictCard from "@/components/analysis/VerdictCard";
 import MovieHero from "@/components/analysis/MovieHero";
 import { getMovie } from "@/lib/tmdb";
 import { analyzeMovie } from "@/lib/api";
+import Navbar from "@/components/layout/Navbar";
 
 export default async function AnalysisPage({ params }) {
 

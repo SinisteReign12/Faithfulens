@@ -1,3 +1,5 @@
+import Navbar from "@/components/layout/Navbar";
+
 export default function Loading() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-zinc-950 text-white px-8">
