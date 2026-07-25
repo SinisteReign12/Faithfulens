@@ -21,7 +21,7 @@ export default function Loading() {
       <div className="relative flex min-h-[calc(100vh-64px)] items-center justify-center px-6">
         <div className="max-w-2xl text-center">
 
-          <div className="mx-auto h-16 w-16 rounded-full border-4 border-zinc-700 border-t-red-500 animate-spin" />
+          <div className="mx-auto h-16 w-16 rounded-full border-4 border-zinc-700 border-t-white animate-spin" />
 
           <h1 className="mt-8 text-5xl font-bold tracking-tight">
             Analyzing Faithfulness
@@ -34,7 +34,7 @@ export default function Loading() {
           </p>
 
           <div className="mt-10 flex items-center justify-center gap-3 text-zinc-300">
-            <div className="h-3 w-3 rounded-full bg-red-500 animate-pulse" />
+            <div className="h-3 w-3 rounded-full bg-white animate-pulse" />
             <span className="text-base">
               Gathering evidence and generating analysis...
             </span>
