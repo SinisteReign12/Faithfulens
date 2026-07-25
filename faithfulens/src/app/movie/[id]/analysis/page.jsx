@@ -16,7 +16,7 @@ export default async function AnalysisPage({ params }) {
     const analysisData = await analyzeMovie(movie.title);
 
     return (
-        <main className="min-h-screen bg-zinc-900 text-white">
+        <main className="min-h-screen bg-zinc-950 text-white">
 
             <Navbar />
 
