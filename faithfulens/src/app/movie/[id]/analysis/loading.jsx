@@ -2,9 +2,11 @@ import Navbar from "@/components/layout/Navbar";
 
 export default function Loading() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-zinc-950 text-white px-8">
+    <main className="min-h-screen bg-zinc-900 text-white px-8">
 
       <Navbar />
+
+      <div className="flex items-center justify-center">
 
       <div className="max-w-xl text-center">
 
@@ -30,6 +32,9 @@ export default function Loading() {
         </div>
 
       </div>
-    </main>
+
+    </div>
+
+    </main >
   );
 }

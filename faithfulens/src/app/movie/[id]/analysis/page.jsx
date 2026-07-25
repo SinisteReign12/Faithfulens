@@ -16,9 +16,11 @@ export default async function AnalysisPage({ params }) {
     const analysisData = await analyzeMovie(movie.title);
 
     return (
-        <main className="min-h-screen mt-5 px-8 bg-zinc-950 text-white">
+        <main className="min-h-screen bg-zinc-900 text-white">
 
             <Navbar />
+
+            <div className="px-8 mt-5">
 
             <Link
                 href={`/movie/${id}`}
@@ -64,6 +66,7 @@ export default async function AnalysisPage({ params }) {
                 />
             </div>
 
+            </div>
         </main>
     );
 }
