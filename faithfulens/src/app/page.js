@@ -21,7 +21,7 @@ export default function Home() {
           Faithfulens
         </h1>
 
-        <p className="text-zinc-300 text-lg mb-10 text-center max-w-xl">
+        <p className="text-zinc-400 font-semibold text-lg mb-10 text-center max-w-xl">
           Discover how faithfully movies adapt their original books using AI and community discussions.
         </p>
 

@@ -85,7 +85,7 @@ export default async function MoviePage({ params }) {
 
                         <Link
                             href={`/movie/${id}/analysis`}
-                            className="mt-10 inline-block rounded-full border border-zinc-800 bg-zinc-900 px-10 py-4 text-lg font-semibold transition hover:bg-zinc-700"
+                            className="mt-10 inline-block rounded-full bg-zinc-900 px-10 py-4 text-lg font-semibold transition hover:bg-zinc-700"
                         >
                             Analyze Faithfulness
                         </Link>

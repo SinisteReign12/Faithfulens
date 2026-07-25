@@ -20,7 +20,7 @@ export default async function AnalysisPage({ params }) {
 
             <Navbar />
 
-            <div className="max-w-7xl mx-auto px-8 pt-28 pb-16">
+            <div className="mx-auto px-8 pt-28 pb-16">
                 <Link
                     href={`/movie/${id}`}
                     className="inline-flex items-center text-zinc-500 transition hover:text-zinc-100"

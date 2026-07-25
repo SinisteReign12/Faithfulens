@@ -5,7 +5,7 @@ export default function Navbar() {
     return (
         <nav className="fixed inset-x-0 top-0 z-50 bg-linear-to-b from-black/60 via-black/30 to-transparent backdrop-blur-sm">
 
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
 
                 <Link href="/" className="flex items-center gap-2">
                     <Image
@@ -25,7 +25,7 @@ export default function Navbar() {
 
                     <Link
                         href="/"
-                        className="hover:text-white transition hover: cursor-pointer hover:underline"
+                        className="hover:text-white transition hover:cursor-pointer hover:underline"
                     >
                         Home
                     </Link>
