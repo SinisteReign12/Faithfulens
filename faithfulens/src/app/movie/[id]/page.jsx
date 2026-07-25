@@ -4,7 +4,7 @@ import { getMovie } from "@/lib/tmdb";
 import Navbar from "@/components/layout/Navbar";
 
 export default async function MoviePage({ params }) {
-    
+
     const { id } = await params;
 
     const movie = await getMovie(id);
@@ -13,7 +13,7 @@ export default async function MoviePage({ params }) {
         <main className="relative min-h-screen bg-zinc-950 text-white pb-20">
             <Navbar />
 
-            <div className="absolute inset-x-0 top-0 h-[60vh] min-h-[450px] overflow-hidden">
+            <div className="absolute inset-x-0 top-0 h-[60vh] min-h-112.5 overflow-hidden">
                 <Image
                     src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
                     alt={movie.title}
@@ -22,8 +22,8 @@ export default async function MoviePage({ params }) {
                     className="object-cover scale-105"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-black/40 to-black/10" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30" />
+                <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-black/40 to-black/10" />
+                <div className="absolute inset-0 bg-linear-to-r from-black/30 via-transparent to-black/30" />
             </div>
 
             <div className="relative z-10 max-w-6xl mx-auto px-8 pt-[38vh]">

@@ -3,8 +3,9 @@ import Image from "next/image";
 
 export default function Navbar() {
     return (
-        <nav className="fixed top-0 z-50 bg-black/30 border-b border-zinc-900">
-            <div className="max-w-7xl mx-auto px-6 py-2 flex justify-between items-center">
+        <nav className="fixed inset-x-0 top-0 z-50 bg-linear-to-b from-black/60 via-black/30 to-transparent backdrop-blur-sm">
+
+            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
                 <Link href="/" className="flex items-center gap-2">
                     <Image
