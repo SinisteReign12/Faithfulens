@@ -11,7 +11,7 @@ export default function Home() {
       }}
     >
 
-      <div className="bg-black/50">
+      <div className="bg-black/20">
 
       <Navbar />
 
