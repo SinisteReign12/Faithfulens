@@ -25,7 +25,7 @@ export default function Navbar() {
 
                     <Link
                         href="/"
-                        className="hover:text-white transition hover:cursor-pointer hover:underline"
+                        className="hover:text-white px-4 py-2 hover:cursor-pointer hover:bg-zinc-900/50 hover:rounded-3xl"
                     >
                         Home
                     </Link>
