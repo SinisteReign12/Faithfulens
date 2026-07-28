@@ -28,8 +28,8 @@ export default function Loading() {
           </h1>
 
           <p className="mt-5 text-lg leading-8 text-zinc-400">
-            Our AI is comparing the movie with its original source material
-            using thousands of community discussions to generate a detailed
+            Comparing the movie with its original source material
+            using community discussions to generate a detailed
             adaptation report.
           </p>
 
@@ -44,7 +44,7 @@ export default function Loading() {
             This usually takes around <span className="text-zinc-300">20–30 seconds</span>.
           </p>
         </div>
-        
+
       </div>
     </main>
   );
