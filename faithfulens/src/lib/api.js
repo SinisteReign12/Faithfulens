@@ -1,6 +1,6 @@
 export async function analyzeMovie(title) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/analyze`,
+    `${process.env.BACKEND_URL}/analyze`,
     {
       method: "POST",
       headers: {
