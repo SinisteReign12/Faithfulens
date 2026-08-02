@@ -1,13 +1,15 @@
 import os
 import json
-import requests
+from groq import Groq
 from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("OPENROUTER_API_KEY")
+client = Groq(
+    api_key=os.getenv("GROQ_API_KEY")
+)
 
-MODEL = "openrouter/free"
+MODEL = "llama-3.1-8b-instant"
 
 
 def generate_analysis(movie_name, context):
@@ -69,38 +71,23 @@ Return ONLY valid JSON in the following format:
 }}
 """
 
-    response = requests.post(
-        "https://openrouter.ai/api/v1/chat/completions",
-        headers={
-            "Authorization": f"Bearer {API_KEY}",
-            "Content-Type": "application/json",
-            "HTTP-Referer": "https://faithfulens.vercel.app",
-            "X-Title": "Faithfulens"
-        },
-        json={
-            "model": MODEL,
-            "messages": [
+    try:
+        response = client.chat.completions.create(
+            model=MODEL,
+            messages=[
                 {
                     "role": "user",
-                    "content": prompt
+                    "content": prompt,
                 }
-            ]
-        },
-        timeout=120
-    )
+            ],
+            temperature=0.2,
+        )
 
-    if not response.ok:
-        print("OpenRouter Error:", response.status_code)
-        print(response.text)
-        response.raise_for_status()
+        content = response.choices[0].message.content.strip()
 
-    result = response.json()
-    if "choices" not in result:
-        print("OpenRouter returned:")
-        print(json.dumps(result, indent=2))
-        raise Exception(f"OpenRouter error: {result}")
-
-    content = result["choices"][0]["message"]["content"].strip()
+    except Exception as e:
+        print("Groq Error:", e)
+        raise
 
     if content.startswith("```json"):
         content = content.replace("```json", "", 1).strip()
