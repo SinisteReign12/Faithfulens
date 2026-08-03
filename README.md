@@ -51,7 +51,7 @@ Next.js Frontend
         ▼
  Semantic Retrieval
         ▼
- OpenRouter LLM
+ Groq LLM
         ▼
  Adaptation Analysis
 ```
@@ -70,7 +70,7 @@ Next.js Frontend
 - Python
 
 ### AI & Data
-- OpenRouter
+- Groq
 - ChromaDB
 - TMDb API
 - YouTube Data API
@@ -89,6 +89,6 @@ Next.js Frontend
 
 <div align="center">
 
-Built using Next.js, FastAPI, ChromaDB, and OpenRouter.
+Built using Next.js, FastAPI, ChromaDB, and Groq.
 
 </div>
